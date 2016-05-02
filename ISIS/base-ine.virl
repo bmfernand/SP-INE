@@ -5,7 +5,7 @@
             <entry key="Auto-generate config" type="Boolean">false</entry>
             <entry key="static_serial_port_0" type="Integer">4000</entry>
             <entry key="config" type="String">!
-! Last configuration change at 22:56:26 UTC Sun May 1 2016
+! Last configuration change at 00:24:04 UTC Mon May 2 2016
 !
 version 15.6
 service timestamps debug datetime msec
@@ -19,6 +19,7 @@ boot-start-marker
 boot-end-marker
 !
 !
+logging buffered 1000000
 enable secret 5 $1$iL./$W8M.xm8P5M9briOvEnbob0
 !
 no aaa new-model
@@ -50,10 +51,17 @@ subscriber templating
 !
 !
 multilink bundle-name authenticated
+clns routing
 !
 !
 !
 !
+!
+crypto pki trustpoint TP-self-signed-4109681149
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-4109681149
+ revocation-check none
+ rsakeypair TP-self-signed-4109681149
 !
 crypto pki trustpoint TP-self-signed-3714284422
  enrollment selfsigned
@@ -68,8 +76,9 @@ crypto pki trustpoint TP-self-signed-2692300688
  rsakeypair TP-self-signed-2692300688
 !
 !
-crypto pki certificate chain TP-self-signed-3714284422
+crypto pki certificate chain TP-self-signed-4109681149
  certificate self-signed 01 nvram:IOS-Self-Sig#1.cer
+crypto pki certificate chain TP-self-signed-3714284422
 crypto pki certificate chain TP-self-signed-2692300688
 !
 !
@@ -78,7 +87,7 @@ crypto pki certificate chain TP-self-signed-2692300688
 !
 !
 !
-license udi pid CSR1000V sn 98496RBU4JZ
+license udi pid CSR1000V sn 9F1UUEPNX5O
 !
 spanning-tree extend system-id
 !
@@ -116,7 +125,7 @@ interface Loopback0
  ip address 10.1.1.1 255.255.255.255
 !
 interface GigabitEthernet1
- ip address 10.255.0.128 255.255.0.0
+ ip address 10.255.0.137 255.255.0.0
  shutdown
  negotiation auto
 !
@@ -176,7 +185,7 @@ end</entry>
             <entry key="static_serial_port_0" type="Integer">4001</entry>
             <entry key="Auto-generate config" type="Boolean">false</entry>
             <entry key="config" type="String">!
-! Last configuration change at 22:56:27 UTC Sun May 1 2016
+! Last configuration change at 00:24:04 UTC Mon May 2 2016
 !
 version 15.6
 service timestamps debug datetime msec
@@ -221,10 +230,17 @@ subscriber templating
 !
 !
 multilink bundle-name authenticated
+clns routing
 !
 !
 !
 !
+!
+crypto pki trustpoint TP-self-signed-2667806831
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2667806831
+ revocation-check none
+ rsakeypair TP-self-signed-2667806831
 !
 crypto pki trustpoint TP-self-signed-1188003272
  enrollment selfsigned
@@ -239,8 +255,9 @@ crypto pki trustpoint TP-self-signed-4186326733
  rsakeypair TP-self-signed-4186326733
 !
 !
-crypto pki certificate chain TP-self-signed-1188003272
+crypto pki certificate chain TP-self-signed-2667806831
  certificate self-signed 01 nvram:IOS-Self-Sig#1.cer
+crypto pki certificate chain TP-self-signed-1188003272
 crypto pki certificate chain TP-self-signed-4186326733
 !
 !
@@ -249,7 +266,7 @@ crypto pki certificate chain TP-self-signed-4186326733
 !
 !
 !
-license udi pid CSR1000V sn 9S6Y63J1W5S
+license udi pid CSR1000V sn 9FRILWNFZ2H
 !
 spanning-tree extend system-id
 !
@@ -287,7 +304,7 @@ interface Loopback0
  ip address 10.1.2.2 255.255.255.255
 !
 interface GigabitEthernet1
- ip address 10.255.0.126 255.255.0.0
+ ip address 10.255.0.135 255.255.0.0
  shutdown
  negotiation auto
 !
@@ -307,6 +324,7 @@ interface GigabitEthernet3
 !
 interface GigabitEthernet4
  description link to R4
+ mac-address 0002.0002.0002
  ip address 10.2.24.2 255.255.255.0
  ip router isis 10
  negotiation auto
@@ -314,6 +332,7 @@ interface GigabitEthernet4
 !
 router isis 10
  net 01.0000.0000.0002.00
+ metric-style wide
  log-adjacency-changes all
  passive-interface Loopback0
 !
@@ -363,7 +382,7 @@ end</entry>
             <entry key="static_serial_port_0" type="Integer">4002</entry>
             <entry key="Auto-generate config" type="Boolean">false</entry>
             <entry key="config" type="String">!
-! Last configuration change at 22:56:27 UTC Sun May 1 2016
+! Last configuration change at 00:24:04 UTC Mon May 2 2016
 !
 version 15.6
 service timestamps debug datetime msec
@@ -413,6 +432,12 @@ multilink bundle-name authenticated
 !
 !
 !
+crypto pki trustpoint TP-self-signed-3749760162
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3749760162
+ revocation-check none
+ rsakeypair TP-self-signed-3749760162
+!
 crypto pki trustpoint TP-self-signed-1347212972
  enrollment selfsigned
  subject-name cn=IOS-Self-Signed-Certificate-1347212972
@@ -426,8 +451,9 @@ crypto pki trustpoint TP-self-signed-4139847065
  rsakeypair TP-self-signed-4139847065
 !
 !
-crypto pki certificate chain TP-self-signed-1347212972
+crypto pki certificate chain TP-self-signed-3749760162
  certificate self-signed 01 nvram:IOS-Self-Sig#1.cer
+crypto pki certificate chain TP-self-signed-1347212972
 crypto pki certificate chain TP-self-signed-4139847065
 !
 !
@@ -436,7 +462,7 @@ crypto pki certificate chain TP-self-signed-4139847065
 !
 !
 !
-license udi pid CSR1000V sn 9V751IOMEMJ
+license udi pid CSR1000V sn 9XCOF89JOHH
 !
 spanning-tree extend system-id
 !
@@ -474,7 +500,7 @@ interface Loopback0
  ip address 10.1.3.3 255.255.255.255
 !
 interface GigabitEthernet1
- ip address 10.255.0.127 255.255.0.0
+ ip address 10.255.0.136 255.255.0.0
  shutdown
  negotiation auto
 !
@@ -499,6 +525,7 @@ interface GigabitEthernet4
 router isis 10
  net 00.0000.0000.0003.00
  is-type level-2-only
+ metric-style wide
  log-adjacency-changes all
  passive-interface Loopback0
 !
@@ -548,7 +575,7 @@ end</entry>
             <entry key="Auto-generate config" type="Boolean">false</entry>
             <entry key="static_serial_port_0" type="Integer">4003</entry>
             <entry key="config" type="String">!
-! Last configuration change at 22:56:27 UTC Sun May 1 2016
+! Last configuration change at 00:24:04 UTC Mon May 2 2016
 !
 version 15.6
 service timestamps debug datetime msec
@@ -598,6 +625,12 @@ multilink bundle-name authenticated
 !
 !
 !
+crypto pki trustpoint TP-self-signed-2196104754
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2196104754
+ revocation-check none
+ rsakeypair TP-self-signed-2196104754
+!
 crypto pki trustpoint TP-self-signed-969556700
  enrollment selfsigned
  subject-name cn=IOS-Self-Signed-Certificate-969556700
@@ -611,8 +644,9 @@ crypto pki trustpoint TP-self-signed-3387525050
  rsakeypair TP-self-signed-3387525050
 !
 !
-crypto pki certificate chain TP-self-signed-969556700
+crypto pki certificate chain TP-self-signed-2196104754
  certificate self-signed 01 nvram:IOS-Self-Sig#1.cer
+crypto pki certificate chain TP-self-signed-969556700
 crypto pki certificate chain TP-self-signed-3387525050
 !
 !
@@ -621,7 +655,7 @@ crypto pki certificate chain TP-self-signed-3387525050
 !
 !
 !
-license udi pid CSR1000V sn 9COB6KXANPJ
+license udi pid CSR1000V sn 9PW9ZNP4RSW
 !
 spanning-tree extend system-id
 !
@@ -659,7 +693,7 @@ interface Loopback0
  ip address 10.1.4.4 255.255.255.255
 !
 interface GigabitEthernet1
- ip address 10.255.0.124 255.255.0.0
+ ip address 10.255.0.133 255.255.0.0
  shutdown
  negotiation auto
 !
@@ -674,6 +708,7 @@ interface GigabitEthernet3
  ip address 10.2.34.4 255.255.255.0
  ip router isis 10
  negotiation auto
+ isis priority 127
 !
 interface GigabitEthernet4
  description link to R6
@@ -690,6 +725,7 @@ interface GigabitEthernet5
 router isis 10
  net 00.0000.0000.0004.00
  is-type level-2-only
+ metric-style wide
  log-adjacency-changes all
  passive-interface Loopback0
 !
@@ -740,7 +776,7 @@ end</entry>
             <entry key="static_serial_port_0" type="Integer">4004</entry>
             <entry key="Auto-generate config" type="Boolean">false</entry>
             <entry key="config" type="String">!
-! Last configuration change at 22:56:27 UTC Sun May 1 2016
+! Last configuration change at 00:24:04 UTC Mon May 2 2016
 !
 version 15.6
 service timestamps debug datetime msec
@@ -790,6 +826,12 @@ multilink bundle-name authenticated
 !
 !
 !
+crypto pki trustpoint TP-self-signed-1513129992
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1513129992
+ revocation-check none
+ rsakeypair TP-self-signed-1513129992
+!
 crypto pki trustpoint TP-self-signed-1182030655
  enrollment selfsigned
  subject-name cn=IOS-Self-Signed-Certificate-1182030655
@@ -803,8 +845,9 @@ crypto pki trustpoint TP-self-signed-3089133387
  rsakeypair TP-self-signed-3089133387
 !
 !
-crypto pki certificate chain TP-self-signed-1182030655
+crypto pki certificate chain TP-self-signed-1513129992
  certificate self-signed 01 nvram:IOS-Self-Sig#1.cer
+crypto pki certificate chain TP-self-signed-1182030655
 crypto pki certificate chain TP-self-signed-3089133387
 !
 !
@@ -813,7 +856,7 @@ crypto pki certificate chain TP-self-signed-3089133387
 !
 !
 !
-license udi pid CSR1000V sn 9TLO79D6QE5
+license udi pid CSR1000V sn 9XDTNYJ9D84
 !
 spanning-tree extend system-id
 !
@@ -851,7 +894,7 @@ interface Loopback0
  ip address 10.1.5.5 255.255.255.255
 !
 interface GigabitEthernet1
- ip address 10.255.0.125 255.255.0.0
+ ip address 10.255.0.134 255.255.0.0
  shutdown
  negotiation auto
 !
@@ -882,6 +925,7 @@ interface GigabitEthernet5
 router isis 10
  net 00.0000.0000.0005.00
  is-type level-2-only
+ metric-style wide
  log-adjacency-changes all
  passive-interface Loopback0
 !
@@ -932,7 +976,7 @@ end</entry>
             <entry key="Auto-generate config" type="Boolean">false</entry>
             <entry key="static_serial_port_0" type="Integer">4005</entry>
             <entry key="config" type="String">!
-! Last configuration change at 22:56:27 UTC Sun May 1 2016
+! Last configuration change at 00:24:04 UTC Mon May 2 2016
 !
 version 15.6
 service timestamps debug datetime msec
@@ -982,6 +1026,12 @@ multilink bundle-name authenticated
 !
 !
 !
+crypto pki trustpoint TP-self-signed-3550774456
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3550774456
+ revocation-check none
+ rsakeypair TP-self-signed-3550774456
+!
 crypto pki trustpoint TP-self-signed-1380023800
  enrollment selfsigned
  subject-name cn=IOS-Self-Signed-Certificate-1380023800
@@ -995,8 +1045,9 @@ crypto pki trustpoint TP-self-signed-4229356862
  rsakeypair TP-self-signed-4229356862
 !
 !
-crypto pki certificate chain TP-self-signed-1380023800
+crypto pki certificate chain TP-self-signed-3550774456
  certificate self-signed 01 nvram:IOS-Self-Sig#1.cer
+crypto pki certificate chain TP-self-signed-1380023800
 crypto pki certificate chain TP-self-signed-4229356862
 !
 !
@@ -1005,7 +1056,7 @@ crypto pki certificate chain TP-self-signed-4229356862
 !
 !
 !
-license udi pid CSR1000V sn 98DPLUECWVC
+license udi pid CSR1000V sn 9MPOD0HFFB9
 !
 spanning-tree extend system-id
 !
@@ -1043,7 +1094,7 @@ interface Loopback0
  ip address 10.1.6.6 255.255.255.255
 !
 interface GigabitEthernet1
- ip address 10.255.0.123 255.255.0.0
+ ip address 10.255.0.132 255.255.0.0
  shutdown
  negotiation auto
 !
@@ -1067,6 +1118,7 @@ interface GigabitEthernet4
 router isis 10
  net 00.0000.0000.0006.00
  is-type level-2-only
+ metric-style wide
  log-adjacency-changes all
  passive-interface Loopback0
 !
@@ -1116,7 +1168,7 @@ end</entry>
             <entry key="Auto-generate config" type="Boolean">false</entry>
             <entry key="static_serial_port_0" type="Integer">4100</entry>
             <entry key="config" type="String">!! IOS XR Configuration 6.0.0
-!! Last configuration change at Sun May  1 22:46:42 2016 by cisco
+!! Last configuration change at Mon May  2 00:20:47 2016 by cisco
 !
 hostname XR1
 cdp
@@ -1139,6 +1191,7 @@ router isis 10
  net 02.0000.0000.0011.00
  log adjacency changes
  address-family ipv4 unicast
+  metric-style wide
  !
  interface Loopback0
   address-family ipv4 unicast
@@ -1168,7 +1221,7 @@ end</entry>
             <entry key="Auto-generate config" type="Boolean">false</entry>
             <entry key="static_serial_port_0" type="Integer">4101</entry>
             <entry key="config" type="String">!! IOS XR Configuration 6.0.0
-!! Last configuration change at Sun May  1 22:50:05 2016 by cisco
+!! Last configuration change at Mon May  2 00:20:50 2016 by cisco
 !
 hostname XR2
 cdp
@@ -1183,6 +1236,9 @@ interface GigabitEthernet0/0/0/0
 !
 router isis 10
  net 02.0000.0000.0012.00
+ address-family ipv4 unicast
+  metric-style wide
+ !
  interface Loopback0
   address-family ipv4 unicast
   !
